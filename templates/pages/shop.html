@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load custom_tags %}
+
 {% block title %}
 Магазин Easy Purchase
 {% endblock title %}
@@ -11,27 +13,15 @@
             <h2 class="text-danger text-center fst-italic fw-medium">
                 Категории
             </h2>
+            {% get_category as categories %}
             <ul class="list-group list-group-flush border border-black" style="border-radius: 10px;">
+                {% for category in categories %}
                 <li class="list-group-item bg-dark border-black text-danger">
-                    <a href="#" class="text-danger fs-5 text-decoration-none"><span class="a">Симулятор</span></a>
+                    <a href="{{ category.get_absolute_url }}" class="text-danger fs-5 text-decoration-none">
+                        {{ category }}
+                    </a>
                 </li>
-                <li class="list-group-item bg-dark border-black text-danger">
-                    <a href="#" class="text-danger fs-5 text-decoration-none"><span class="a">Аркады</span></a>
-                <li class="list-group-item bg-dark border-black text-danger">
-                    <a href="#" class="text-danger fs-5 text-decoration-none"><span class="a">Платформеры</span></a>
-                </li>
-                <li class="list-group-item bg-dark border-black text-danger">
-                    <a href="#" class="text-danger fs-5 text-decoration-none"><span class="a">Шутеры</span></a>
-                </li>
-                <li class="list-group-item bg-dark border-black text-danger">
-                    <a href="#" class="text-danger fs-5 text-decoration-none"><span class="a">Файтинги</span></a>
-                </li>
-                <li class="list-group-item bg-dark border-black text-danger">
-                    <a href="#" class="text-danger fs-5 text-decoration-none"><span class="a">Выживание</span></a>
-                </li>
-                <li class="list-group-item bg-dark border-black text-danger">
-                    <a href="#" class="text-danger fs-5 text-decoration-none"><span class="a">Экшены</span></a>
-                </li>
+                {% endfor %}
             </ul>
         </div>
 
@@ -39,102 +29,17 @@
             <h2 class="text-danger text-center fst-italic fw-medium">
                 Рекомендации
             </h2>
-            <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="d-flex flex-wrap gap-3 mt-4 mb-3">
+                {% for items in product %}
                 <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Battlefield 1</span></a></h5>
-                    <img src="pages/image/Battlefield1/Battlefield 1.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Dark Souls 3</span></a></h5>
-                    <img src="pages/image/DarkSouls3/Dark Souls 3.jpeg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Quantum Break</span></a></h5>
-                    <img src="pages/image/QuantumBreak/Quantum Break.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                       class="text-danger text-decoration-none"><span class="a">Firewatch</span></a>
+                    <h5 class="text-center">
+                        <a href="{{ items.get_absolute_url }}" class="text-danger text-decoration-none">
+                            <span class="a">{{ items.title }}</span>
+                        </a>
                     </h5>
-                    <img src="pages/image/Firewatch/Firewatch.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
+                    <img src="{{ items.image.url }}" style="width: 305px; height: 200px;" class="card-img">
                 </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span class="a">Firewatch</span></a>
-                    </h5>
-                    <img src="pages/image/Firewatch/Firewatch.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Battlefield 1</span></a></h5>
-                    <img src="pages/image/Battlefield1/Battlefield 1.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Dark Souls 3</span></a></h5>
-                    <img src="pages/image/DarkSouls3/Dark Souls 3.jpeg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Quantum Break</span></a></h5>
-                    <img src="pages/image/QuantumBreak/Quantum Break.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Dark Souls 3</span></a></h5>
-                    <img src="pages/image/DarkSouls3/Dark Souls 3.jpeg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span class="a">Firewatch</span></a>
-                    </h5>
-                    <img src="pages/image/Firewatch/Firewatch.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Quantum Break</span></a></h5>
-                    <img src="pages/image/QuantumBreak/Quantum Break.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
-
-                <div class="card bg-dark">
-                    <h5 class="text-center"><a href="pages/Battlefield1.html"
-                                               class="text-danger text-decoration-none"><span
-                            class="a">Battlefield 1</span></a></h5>
-                    <img src="pages/image/Battlefield1/Battlefield 1.jpg" style="width: 305px; height: 200px;"
-                         class="card-img" alt="...">
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

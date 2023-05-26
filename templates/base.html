@@ -11,7 +11,6 @@
 
         {% endblock title %}
     </title>
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
           crossorigin="anonymous">
@@ -23,6 +22,10 @@
         .a:hover {
                 color: rgb(255, 60, 0);
         }
+        .box-shadow {
+            box-shadow: 10px 5px 15px rgb(199, 54, 54);
+        }
+
     </style>
 </head>
 
@@ -31,35 +34,43 @@
 <nav class="shadows navbar navbar-expand-lg"
      style="background-color: rgb(139, 0, 0); border-bottom: 3px solid #000;">
     <div class="container-fluid">
-        <a class="a navbar-brand fs-4 fw-medium" href="base.html">Easy Purchase</a>
+        <a class="a navbar-brand fs-4 fw-medium" href="{% url 'home' %}">Easy Purchase</a>
         <div style="height: 40px; width: 0px; color: black; border: 1px solid;"></div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
                 <li class="nav-item">
                     <a class="nav-link text-black fs-5 fst-italic fw-medium"
-                       aria-current="page" href="{% url 'home' %}">Главное</a>
+                       aria-current="page" href="{% url 'home' %}"><span class="a">Главное</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-black fs-5 fst-italic fw-medium"
-                       aria-current="page" href="{% url 'shop' %}">Магазин</a>
+                       aria-current="page" href="{% url 'shop' %}"><span class="a">Магазин</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-black fs-5 fst-italic fw-medium"
-                       aria-current="page" href="#">Анонсы игр</a>
+                       aria-current="page" href="#"><span class="a">Анонсы игр</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-black fs-5 fst-italic fw-medium"
-                       aria-current="page" href="#">Скидки</a>
+                       aria-current="page" href="#"><span class="a">Скидки</span></a>
                 </li>
             </ul>
-
+            <form class="d-flex ms-auto" role="search" action="{% url 'search' %}">
+                <input name="q" class="form-control me-2 bg-black text-danger" type="search" aria-label="Search">
+                <button class="btn fw-medium" style="color: black; background-color: rgb(255, 60, 0);" type="submit">Поиск</button>
+            </form>
             <div class="d-flex gap-3 ms-3">
-                <a href="#" class="btn fw-medium"
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}" class="btn fw-medium"
                    style="color: black; background-color: rgb(255, 60, 0);">Войти</a>
-                <a href="#" class="btn fw-medium"
+
+                <a href="{% url 'registration' %}" class="btn fw-medium"
                    style="color: black; background-color: rgb(255, 60, 0);">Регистрация</a>
-                <a href="#" class="btn fw-medium"
+                {% else %}
+
+                <a href="{% url 'logout' %}" class="btn fw-medium"
                    style="color: black; background-color: rgb(255, 60, 0);">Выйти</a>
+                {% endif %}
             </div>
         </div>
     </div>

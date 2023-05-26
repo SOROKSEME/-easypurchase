@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+
+{% block title %}
+Войти
+{% endblock title %}
+
+{% block content %}
+<div class="mt-5 d-flex justify-content-center" style="margin-bottom: 460px;">
+    <div class="row">
+        <div class="col-12 box-shadow text-danger" style="background-color: rgba(70, 70, 70, 0.7); width: 500px;">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-flex justify-content-center p-3">
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

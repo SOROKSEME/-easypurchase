@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
+
 
 {% block title %}
 Easy Purchase
@@ -17,7 +19,8 @@ Easy Purchase
             <p class="fs-3 mt-2 p-3 text-start text-black fst-italic fw-medium">
                 Чтобы начать, вам необходимо зарегистрироваться на сайте. Затем нажмите на
                 нужные вкладки сверху. Если вам нужны скины, то зайдите в «магазин», если вам нужно узнать информацию о
-                нужных вам персонажах переходите «О героях», если вы вообще не знаете, что это за игра, то переходите «Об игре».
+                нужных вам персонажах переходите «О героях», если вы вообще не знаете, что это за игра, то переходите
+                «Об игре».
             </p>
         </div>
     </div>
@@ -40,19 +43,21 @@ Easy Purchase
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
         </div>
+        {% get_new_product as new_product %}
         <div class="carousel-inner">
+            {% for item in new_product %}
             <div class="carousel-item active">
-                <img style="width: 1350px; height: 750px;" src="{% static 'image/a plague tale requiem.jpg' %}"
+                <img style="width: 1350px; height: 750px;" src="{{ item.image.url }}"
                      class="d-block">
                 <div class="carousel-caption d-none d-md-block">
                     <h5 class="fst-italic">
                         <span class="bg-dark p-2">
-                            A Plague Tale: Requiem
+                            {{ item.title }}
                         </span>
                     </h5>
                 </div>
             </div>
-
+            {% endfor %}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                 data-bs-slide="prev">
